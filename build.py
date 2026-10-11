@@ -46,7 +46,16 @@ def build():
     config = json.loads(config_path.read_text(encoding="utf-8"))
     initialize = config.get("guid_namespace") in (None, "")
     if initialize and os.environ.get("CI", "").lower() == "true":
-        raise ValueError("run python build.py locally and commit deck.json before building in CI")
+        raise ValueError(
+            "One-time setup required: deck.json has no guid_namespace.\n"
+            "CI cannot save a permanent namespace for future builds.\n\n"
+            "After installing the dependencies (see README), run locally from the repository root:\n"
+            "  python build.py\n"
+            "  git add deck.json\n"
+            '  git commit -m "Initialize deck namespace"\n'
+            "  git push\n\n"
+            "The push will trigger a new build. Keep the saved namespace unchanged."
+        )
     if initialize:
         config["guid_namespace"] = uuid.uuid4().hex
     namespace = config["guid_namespace"]
@@ -133,4 +142,7 @@ if __name__ == "__main__":
     try:
         build()
     except (ValueError, KeyError, OSError) as error:
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            message = str(error).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+            print(f"::error title=Deck build failed::{message}", flush=True)
         sys.exit(f"Build failed: {error}")
