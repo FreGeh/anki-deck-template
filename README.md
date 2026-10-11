@@ -9,8 +9,7 @@ python -m pip install -r requirements.txt
 python build.py
 ```
 
-Import `dist/deck.apkg` into Anki. Commit `deck.json` after the first local build;
-keep its generated namespace unchanged.
+Import `dist/deck.apkg` into Anki. Commit `deck.json` after the first local build, but never change the generated namespace.
 
 ## Edit
 
