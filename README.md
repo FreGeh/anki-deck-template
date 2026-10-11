@@ -1,6 +1,8 @@
 # Anki Deck Template
 
-Build with Python:
+This is perfect for you if you want to make one of your Anki decks open source in a way that makes it easily extendable.
+
+Just click "Use this Template" then clone the repo and built it with Python:
 
 ```sh
 python -m venv .venv
