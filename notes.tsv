@@ -1,0 +1,4 @@
+id	subdeck_id	Front	Back
+1	1	What is the capital of France?	Paris.
+2	2	What color is this square? <img src="blue.png" alt="A colored square">	Blue.
+3	_	What do you hear? [sound:tone.wav]	A short tone.

@@ -1,0 +1,8 @@
+{
+  "name": "Example Deck",
+  "guid_namespace": null,
+  "subdecks": {
+    "Geography": 1,
+    "Recognize": 2
+  }
+}
